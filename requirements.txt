@@ -1,0 +1,5 @@
+aiohttp
+dotenv
+fastapi
+uvicorn
+pydantic
