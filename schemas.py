@@ -13,6 +13,12 @@ class Response(BaseModel):
 
 class GenerateBase(BaseModel):
     prompt: str
+    mv: str
+    title: str
+    tags: str
+    continue_at: Optional[str] = None
+    continue_clip_id: Optional[str] = None
+
 
 
 
