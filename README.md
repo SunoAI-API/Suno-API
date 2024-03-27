@@ -33,3 +33,9 @@ For this part, refer to the FastAPI documentation on your own.
 ```bash
 uvicorn main:app 
 ```
+
+#### Documentation
+
+After setting up the service, visit /docs
+
+![docs](./images/docs.png)
