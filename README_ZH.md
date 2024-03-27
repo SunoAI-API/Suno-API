@@ -11,8 +11,7 @@
 
 
 ### 使用
-
-0. 配置
+#### 配置
 
 编辑 .env 文件，填写 session_id 和 cookie
 
@@ -21,14 +20,13 @@
 ![cookie](./images/cover.png)
 
 
-1. 安装依赖 
+#### 安装依赖 
 
 ```bash
 pip3 install -r requirements.txt
 ```
 
-
-2. 运行
+#### 运行
 
 这一部分，自行参考 FastAPI 文档
 ```bash

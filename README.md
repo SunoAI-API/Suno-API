@@ -12,7 +12,7 @@ It comes with a built-in token maintenance and keep-alive feature, so you don't 
 
 ### Usage
 
-0. Configuration
+#### Configuration
 
 Edit the .env file and fill in the session_id and cookie.
 
@@ -21,14 +21,13 @@ These are initially obtained from the browser, and will be automatically kept al
 ![cookie](./images/cover.png)
 
 
-1. Install dependencies 
+#### Install dependencies 
 
 ```bash
 pip3 install -r requirements.txt
 ```
 
-
-2. Run
+#### Run
 
 For this part, refer to the FastAPI documentation on your own.
 ```bash
