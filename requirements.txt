@@ -1,5 +1,6 @@
 aiohttp
-dotenv
+python-dotenv
 fastapi
 uvicorn
 pydantic
+requests

@@ -14,24 +14,30 @@ It comes with a built-in token maintenance and keep-alive feature, so you don't 
 
 #### Configuration
 
-Edit the .env file and fill in the session_id and cookie.
+Edit the `.env.example` file, rename to `.env` and fill in the session_id and cookie.
 
 These are initially obtained from the browser, and will be automatically kept alive later.
 
 ![cookie](./images/cover.png)
 
 
-#### Install dependencies 
+#### Run
+
+Install dependencies 
 
 ```bash
 pip3 install -r requirements.txt
 ```
 
-#### Run
-
 For this part, refer to the FastAPI documentation on your own.
 ```bash
 uvicorn main:app 
+```
+
+#### Docker
+
+```bash
+docker compose build && docker compose up
 ```
 
 #### Documentation

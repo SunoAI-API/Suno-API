@@ -1,0 +1,7 @@
+__pycache__/
+images/
+
+.env
+Dockerfile
+docker-compose.yml
+README.md
