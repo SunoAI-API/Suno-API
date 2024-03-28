@@ -13,19 +13,19 @@
 
 #### 配置
 
-编辑 .env 文件，填写 session_id 和 cookie
+编辑 `.env.example` 文件，重命名为 `.env`，填写 session_id 和 cookie
 
 这些先从浏览器中获取，后期会自动保活。
 
 ![cookie](./images/cover.png)
 
-#### 安装依赖
+#### 运行
+
+安装依赖
 
 ```bash
 pip3 install -r requirements.txt
 ```
-
-#### 运行
 
 这一部分，自行参考 FastAPI 文档
 
@@ -33,10 +33,14 @@ pip3 install -r requirements.txt
 uvicorn main:app 
 ```
 
+#### Docker
+
+```bash
+docker compose build && docker compose up
+```
+
 #### 文档
 
 搭建服务后访问 /docs
 
 ![docs](./images/docs.png)
-
-

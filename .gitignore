@@ -12,3 +12,6 @@ pip-selfcheck.json
 *.iml
 out
 gen
+
+__pycache__
+.env
