@@ -44,3 +44,8 @@ docker compose build && docker compose up
 搭建服务后访问 /docs
 
 ![docs](./images/docs.png)
+
+
+#### 合作交流
+
+<img src="./images/wechat.jpg" width="382px" height="511px" />

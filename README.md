@@ -1,3 +1,6 @@
+[简体中文](README_ZH.md)
+
+
 # Unofficial Suno API
 
 This is an unofficial Suno API based on Python and FastAPI. It currently supports generating songs, lyrics, etc.  
@@ -45,3 +48,9 @@ docker compose build && docker compose up
 After setting up the service, visit /docs
 
 ![docs](./images/docs.png)
+
+
+#### Contanct me
+
+
+<img src="./images/wechat.jpg" width="382px" height="511px" />
