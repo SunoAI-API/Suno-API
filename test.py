@@ -1,8 +1,8 @@
+import json
+import os
 import time
 
 import requests
-import json
-import os
 from requests import get as rget
 
 
@@ -14,6 +14,21 @@ def test_generate_music():
         "title": "Sunshine in your Pocket",
         "continue_clip_id": None,
         "continue_at": None,
+    }
+
+    r = requests.post(
+        "http://127.0.0.1:8000/generate/description-mode", data=json.dumps(data)
+    )
+
+    resp = r.text
+    print(resp)
+
+
+def test_generate_music_with_description():
+    data = {
+        "gpt_description_prompt": "A Blues song about a person who is feeling happy and optimistic about the future.",
+        "make_instrumental": False,
+        "mv": "chirp-v3-0",
     }
 
     r = requests.post("http://127.0.0.1:8000/generate", data=json.dumps(data))
