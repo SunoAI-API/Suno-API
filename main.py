@@ -1,12 +1,13 @@
 # -*- coding:utf-8 -*-
 
 import json
-from fastapi import FastAPI, HTTPException, status, Depends, Request
+
+from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from utils import generate_music, get_feed, generate_lyrics, get_lyrics
-from deps import get_token
 
 import schemas
+from deps import get_token
+from utils import generate_lyrics, generate_music, get_feed, get_lyrics
 
 app = FastAPI()
 
@@ -26,9 +27,16 @@ async def get_root():
 
 
 @app.post("/generate")
-async def generate(data: schemas.GenerateBase, token: str = Depends(get_token)):
+async def generate(
+    data: schemas.GenerateBase, token: str = Depends(get_token)
+):
     try:
-        resp = await generate_music(data.dict(), token)
+        resp = await generate_music(data.model_dump(), token)
+        return resp
+    except Exception as e:
+        raise HTTPException(
+            detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
         return resp
     except Exception as e:
         raise HTTPException(detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -40,7 +48,9 @@ async def fetch_feed(aid: str, token: str = Depends(get_token)):
         resp = await get_feed(aid, token)
         return resp
     except Exception as e:
-        raise HTTPException(detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(
+            detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 @app.post("/generate/lyrics/")
@@ -48,13 +58,17 @@ async def generate_lyrics_post(request: Request, token: str = Depends(get_token)
     req = await request.json()
     prompt = req.get("prompt")
     if prompt is None:
-        raise HTTPException(detail="prompt is required", status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(
+            detail="prompt is required", status_code=status.HTTP_400_BAD_REQUEST
+        )
 
     try:
         resp = await generate_lyrics(prompt, token)
         return resp
     except Exception as e:
-        raise HTTPException(detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(
+            detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 @app.get("/lyrics/{lid}")
@@ -63,4 +77,6 @@ async def fetch_lyrics(lid: str, token: str = Depends(get_token)):
         resp = await get_lyrics(lid, token)
         return resp
     except Exception as e:
-        raise HTTPException(detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(
+            detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

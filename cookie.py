@@ -2,10 +2,12 @@
 
 import os
 import time
-import requests
 from http.cookies import SimpleCookie
-from utils import COMMON_HEADERS
 from threading import Thread
+
+import requests
+
+from utils import COMMON_HEADERS
 
 
 class SunoCookie:
@@ -38,14 +40,14 @@ suno_auth.set_session_id(os.getenv("SESSION_ID"))
 suno_auth.load_cookie(os.getenv("COOKIE"))
 
 
-def update_token(suno_cookie):
+def update_token(suno_cookie: SunoCookie):
     headers = {"cookie": suno_cookie.get_cookie()}
     headers.update(COMMON_HEADERS)
     session_id = suno_cookie.get_session_id()
 
     resp = requests.post(
         url=f"https://clerk.suno.ai/v1/client/sessions/{session_id}/tokens?_clerk_js_version=4.70.5",
-        headers=headers
+        headers=headers,
     )
 
     resp_headers = dict(resp.headers)
@@ -73,5 +75,3 @@ def start_keep_alive(suno_cookie: SunoCookie):
 
 
 start_keep_alive(suno_auth)
-
-

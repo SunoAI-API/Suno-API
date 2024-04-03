@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
 
 from datetime import datetime
-from typing import Any, Union, List, Optional
-from pydantic import BaseModel
+from typing import Any, List, Optional, Union
+
+from pydantic import BaseModel, Field
 
 
 class Response(BaseModel):
@@ -12,6 +13,8 @@ class Response(BaseModel):
 
 
 class GenerateBase(BaseModel):
+    """Generate with Custom Mode"""
+
     prompt: str
     mv: str
     title: str
