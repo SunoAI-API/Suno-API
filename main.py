@@ -28,7 +28,7 @@ async def get_root():
 
 @app.post("/generate")
 async def generate(
-    data: schemas.GenerateBase, token: str = Depends(get_token)
+    data: schemas.CustomModeGenerateParam, token: str = Depends(get_token)
 ):
     try:
         resp = await generate_music(data.model_dump(), token)
@@ -37,9 +37,19 @@ async def generate(
         raise HTTPException(
             detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+
+@app.post("/generate/description-mode")
+async def generate_with_song_description(
+    data: schemas.DescriptionModeGenerateParam, token: str = Depends(get_token)
+):
+    try:
+        resp = await generate_music(data.model_dump(), token)
         return resp
     except Exception as e:
-        raise HTTPException(detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(
+            detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 @app.get("/feed/{aid}")

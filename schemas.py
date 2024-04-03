@@ -12,7 +12,7 @@ class Response(BaseModel):
     data: Optional[Any] = None
 
 
-class GenerateBase(BaseModel):
+class CustomModeGenerateParam(BaseModel):
     """Generate with Custom Mode"""
 
     prompt: str = Field(..., description="lyrics")
@@ -31,5 +31,12 @@ class GenerateBase(BaseModel):
     continue_clip_id: Optional[str] = None
 
 
+class DescriptionModeGenerateParam(BaseModel):
+    """Generate with Song Description"""
 
-
+    gpt_description_prompt: str
+    make_instrumental: bool = False
+    prompt: str = Field(
+        default="",
+        description="Placeholder, keep it as an empty string, do not modify it",
+    )
