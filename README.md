@@ -50,7 +50,7 @@ After setting up the service, visit /docs
 ![docs](./images/docs.png)
 
 
-#### Contanct me
+#### Contact me
 
 
 <img src="./images/wechat.jpg" width="382px" height="511px" />
