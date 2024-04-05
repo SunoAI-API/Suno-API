@@ -1,5 +1,8 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
+#### Contact me
+
+[https://t.me/austin2035](https://t.me/austin2035)
 
 # Unofficial Suno API
 
@@ -50,7 +53,3 @@ After setting up the service, visit /docs
 ![docs](./images/docs.png)
 
 
-#### Contact me
-
-
-<img src="./images/wechat.jpg" width="382px" height="511px" />
