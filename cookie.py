@@ -46,7 +46,7 @@ def update_token(suno_cookie: SunoCookie):
     session_id = suno_cookie.get_session_id()
 
     resp = requests.post(
-        url=f"https://clerk.suno.ai/v1/client/sessions/{session_id}/tokens?_clerk_js_version=4.70.5",
+        url=f"https://clerk.suno.com/v1/client/sessions/{session_id}/tokens?_clerk_js_version=4.72.0-snapshot.vc141245",
         headers=headers,
     )
 
