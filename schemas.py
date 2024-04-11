@@ -36,6 +36,12 @@ class DescriptionModeGenerateParam(BaseModel):
 
     gpt_description_prompt: str
     make_instrumental: bool = False
+    mv: str = Field(
+        default='chirp-v3-0',
+        description="model version, default: chirp-v3-0",
+        examples=["chirp-v3-0"],
+    )
+    
     prompt: str = Field(
         default="",
         description="Placeholder, keep it as an empty string, do not modify it",
