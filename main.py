@@ -31,7 +31,7 @@ async def generate(
     data: schemas.CustomModeGenerateParam, token: str = Depends(get_token)
 ):
     try:
-        resp = await generate_music(data.model_dump(), token)
+        resp = await generate_music(data.dict(), token)
         return resp
     except Exception as e:
         raise HTTPException(
@@ -44,7 +44,7 @@ async def generate_with_song_description(
     data: schemas.DescriptionModeGenerateParam, token: str = Depends(get_token)
 ):
     try:
-        resp = await generate_music(data.model_dump(), token)
+        resp = await generate_music(data.dict(), token)
         return resp
     except Exception as e:
         raise HTTPException(
