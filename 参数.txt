@@ -1,0 +1,3 @@
+什么也不填：
+{"gpt_description_prompt":"a powerful opera song about dancing with you for the last time","mv":"chirp-v3-0","prompt":"","make_instrumental":false}
+

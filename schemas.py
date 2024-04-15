@@ -15,14 +15,14 @@ class Response(BaseModel):
 class CustomModeGenerateParam(BaseModel):
     """Generate with Custom Mode"""
 
-    prompt: str = Field(..., description="lyrics")
+    prompt: str = Field(default='', description="lyrics")
     mv: str = Field(
-        ...,
+        default='chirp-v3-0',
         description="model version, default: chirp-v3-0",
         examples=["chirp-v3-0"],
     )
-    title: str = Field(..., description="song title")
-    tags: str = Field(..., description="style of music")
+    title: str = Field(default='', description="song title")
+    tags: str = Field(default='', description="style of music")
     continue_at: Optional[str] = Field(
         default=None,
         description="continue a new clip from a previous song, format mm:ss",
@@ -36,6 +36,12 @@ class DescriptionModeGenerateParam(BaseModel):
 
     gpt_description_prompt: str
     make_instrumental: bool = False
+    mv: str = Field(
+        default='chirp-v3-0',
+        description="model version, default: chirp-v3-0",
+        examples=["chirp-v3-0"],
+    )
+    
     prompt: str = Field(
         default="",
         description="Placeholder, keep it as an empty string, do not modify it",
