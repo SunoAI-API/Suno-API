@@ -1,5 +1,9 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
+### Good news
+
+We provide an unofficial Suno AI API, no deployment or setup required.Free usage times for login rewards.  
+[https://www.sunoaiapi.com/](https://www.sunoaiapi.com/)
 
 # Unofficial Suno API
 
@@ -17,7 +21,7 @@ It comes with a built-in token maintenance and keep-alive feature, so you don't 
 
 [https://t.me/austin2035](https://t.me/austin2035)
 
-<img width="50%" src="https://pic.lookcos.cn/i/2024/04/09/n675fa.jpg" alt="group" />
+<img width="50%" src="https://pic.lookcos.cn/i/2024/04/16/r0jnsc.jpg" alt="group" />
 
 ### Usage
 
