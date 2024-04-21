@@ -55,4 +55,7 @@ After setting up the service, visit /docs
 
 ![docs](./images/docs.png)
 
+### Useful resources
+
+![chatgpt web, midjourney, gpts,tts, whisper,suno-v3](https://github.com/Dooy/chatgpt-web-midjourney-proxy)
 
