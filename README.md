@@ -17,7 +17,7 @@ It comes with a built-in token maintenance and keep-alive feature, so you don't 
 
 [https://t.me/austin2035](https://t.me/austin2035)
 
-<img width="50%" src="https://pic.lookcos.cn/i/2024/04/16/r0jnsc.jpg" alt="group" />
+![group](./images/WechatIMG148.jpg)
 
 ### Usage
 
