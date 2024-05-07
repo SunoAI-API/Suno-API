@@ -61,3 +61,15 @@ async def get_lyrics(lid, token):
     headers = {"Authorization": f"Bearer {token}"}
     api_url = f"{BASE_URL}/api/generate/lyrics/{lid}"
     return await fetch(api_url, headers, method="GET")
+
+
+async def get_credits(token):
+    headers = {"Authorization": f"Bearer {token}"}
+    api_url = f"{BASE_URL}/api/billing/info/"
+    respose = await fetch(api_url, headers, method="GET")
+    return {
+        "credits_left": respose['total_credits_left'],
+        "period": respose['period'],
+        "monthly_limit": respose['monthly_limit'],
+        "monthly_usage": respose['monthly_usage']
+    }
