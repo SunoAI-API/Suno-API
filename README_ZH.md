@@ -1,4 +1,8 @@
-# 非官方 Suno API
+### 好消息
+我提供 SUNO API， 不需要任何部署，不需要购买 SUNO 账户。更低的价格，更好的体验。  
+网址: [https://app.sunoaiapi.com](https://app.sunoaiapi.com)
+
+### 非官方 Suno API
 
 这一个基于 Python和 FastAPI 的非官方 Suno API，目前支持生成歌曲，歌词等功能。  
 自带维护 token 与保活功能，无需担心 token 过期问题。
