@@ -22,7 +22,7 @@ class Proxy(Base):
 class AuthSession(Base):
     __tablename__ = "auth_sessions"
     id: Mapped[int] = mapped_column(primary_key=True)
-    proxy_id: Mapped[int] = mapped_column(ForeignKey("proxies.id"))
+    proxy_id: Mapped[int] = mapped_column(ForeignKey("proxies.id"), nullable=True)
     session_id: Mapped[str] = mapped_column(String(32))
     cookie: Mapped[int] = mapped_column(String(32))
     last_usage: Mapped[str] = mapped_column(String(32), nullable=True)

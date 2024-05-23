@@ -11,13 +11,14 @@ class Response(BaseModel):
     data: Optional[Any] = None
 
 
-class Request(BaseModel):
+class SessionRequest(BaseModel):
     session_id: int = Field(..., description="auth session id")
 
 
-class CustomModeGenerateParam(Request):
+class CustomModeGenerateParam(BaseModel):
     """Generate with Custom Mode"""
 
+    session_id: Optional[int] = Field(None, description="auth session id")
     prompt: str = Field(..., description="lyrics")
     mv: str = Field(
         ...,
@@ -34,9 +35,9 @@ class CustomModeGenerateParam(Request):
     continue_clip_id: Optional[str] = None
 
 
-class DescriptionModeGenerateParam(Request):
+class DescriptionModeGenerateParam(BaseModel):
     """Generate with Song Description"""
-
+    session_id: Optional[int] = Field(None, description="auth session id")
     gpt_description_prompt: str
     make_instrumental: bool = False
     mv: str = Field(

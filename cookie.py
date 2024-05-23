@@ -10,9 +10,12 @@ from utils import COMMON_HEADERS
 
 def cookie_from_auth_session(session: AuthSession):
     cookie = SunoCookie()
-    cookie.set_proxy(session.proxy.address)
     cookie.load_cookie(session.cookie)
     cookie.set_session_id(session.session_id)
+    cookie.set_auth_session_id(session.id)
+
+    if session.proxy:
+        cookie.set_proxy(session.proxy.address)
 
     return cookie
 
@@ -23,6 +26,7 @@ class SunoCookie:
         self.session_id = None
         self.token = None
         self.proxy = None
+        self.auth_session_id = None
 
     def load_cookie(self, cookie_str):
         self.cookie.load(cookie_str)
@@ -47,6 +51,12 @@ class SunoCookie:
 
     def set_proxy(self, proxy):
         self.proxy = proxy
+
+    def set_auth_session_id(self, auth_session_id):
+        self.auth_session_id = auth_session_id
+
+    def get_auth_session_id(self):
+        return self.auth_session_id
 
     def update_token(self):
         headers = {"cookie": self.get_cookie()}

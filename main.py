@@ -77,6 +77,7 @@ async def generate(
     try:
         cookie = get_cookie(data.dict().get('session_id'))
         resp = await generate_music(data.dict(), cookie.get_token(), cookie.get_proxy())
+        resp["session_id"] = cookie.get_auth_session_id()
         return resp
     except Exception as e:
         logging.error(e)
@@ -92,6 +93,7 @@ async def generate_with_song_description(
     try:
         cookie = get_cookie(data.dict().get('session_id'))
         resp = await generate_music(data.dict(), cookie.get_token(), cookie.get_proxy())
+        resp["session_id"] = cookie.get_auth_session_id()
         return resp
     except Exception as e:
         logging.error(e)
@@ -100,10 +102,10 @@ async def generate_with_song_description(
         )
 
 
-@app.post("/feed/{aid}")
-async def fetch_feed(aid: str, data: schemas.Request):
+@app.get("/feed/{aid}")
+async def fetch_feed(aid: str, session_id: int):
     try:
-        cookie = get_cookie(data.dict().get('session_id'))
+        cookie = get_cookie(session_id)
         resp = await get_feed(aid, cookie.get_token(), cookie.get_proxy())
         return resp
     except Exception as e:
@@ -113,8 +115,8 @@ async def fetch_feed(aid: str, data: schemas.Request):
         )
 
 
-@app.post("/generate/lyrics/")
-async def generate_lyrics_post(request: Request, data: schemas.Request):
+@app.get("/generate/lyrics")
+async def generate_lyrics_post(request: Request, session_id: int = None):
     req = await request.json()
     prompt = req.get("prompt")
     if prompt is None:
@@ -123,7 +125,7 @@ async def generate_lyrics_post(request: Request, data: schemas.Request):
         )
 
     try:
-        cookie = get_cookie(data.dict().get('session_id'))
+        cookie = get_cookie(session_id)
         resp = await generate_lyrics(prompt, cookie.get_token(), cookie.get_proxy())
         return resp
     except Exception as e:
@@ -133,10 +135,10 @@ async def generate_lyrics_post(request: Request, data: schemas.Request):
         )
 
 
-@app.post("/lyrics/{lid}")
-async def fetch_lyrics(lid: str, data: schemas.Request):
+@app.get("/lyrics")
+async def fetch_lyrics(lid: str, session_id: int):
     try:
-        cookie = get_cookie(data.dict().get('session_id'))
+        cookie = get_cookie(session_id)
         resp = await get_lyrics(lid, cookie.get_token(), cookie.get_proxy())
         return resp
     except Exception as e:
@@ -147,9 +149,9 @@ async def fetch_lyrics(lid: str, data: schemas.Request):
 
 
 @app.get("/get_credits")
-async def fetch_credits(data: schemas.Request):
+async def fetch_credits(session_id: int):
     try:
-        cookie = get_cookie(data.dict().get('session_id'))
+        cookie = get_cookie(session_id)
         resp = await get_credits(cookie.get_token(), cookie.get_proxy())
         return resp
     except Exception as e:
