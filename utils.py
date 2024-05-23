@@ -1,13 +1,12 @@
 import json
 import os
-import time
 
 import aiohttp
 from dotenv import load_dotenv
 
 load_dotenv()
 
-BASE_URL = os.getenv("BASE_URL")
+BASE_URL = os.getenv("BASE_URL", "https://studio-api.suno.ai")
 
 COMMON_HEADERS = {
     "Content-Type": "text/plain;charset=UTF-8",
@@ -17,56 +16,56 @@ COMMON_HEADERS = {
 }
 
 
-async def fetch(url, headers=None, data=None, method="POST"):
+async def fetch(url, headers=None, data=None, method="POST", proxy=None):
     if headers is None:
         headers = {}
     headers.update(COMMON_HEADERS)
     if data is not None:
         data = json.dumps(data)
 
-    print(data, method, headers, url)
-
     async with aiohttp.ClientSession() as session:
         try:
             async with session.request(
-                method=method, url=url, data=data, headers=headers
+                method=method, url=url, data=data, headers=headers, proxy=proxy
             ) as resp:
+                if resp.status != 200:
+                    raise RuntimeError(await resp.json())
                 return await resp.json()
         except Exception as e:
-            return f"An error occurred: {e}"
+            raise RuntimeError(f"An error occurred: {e}")
 
 
-async def get_feed(ids, token):
+async def get_feed(ids, token, proxy):
     headers = {"Authorization": f"Bearer {token}"}
     api_url = f"{BASE_URL}/api/feed/?ids={ids}"
-    response = await fetch(api_url, headers, method="GET")
+    response = await fetch(api_url, headers, method="GET", proxy=proxy)
     return response
 
 
-async def generate_music(data, token):
+async def generate_music(data, token, proxy):
     headers = {"Authorization": f"Bearer {token}"}
     api_url = f"{BASE_URL}/api/generate/v2/"
-    response = await fetch(api_url, headers, data)
+    response = await fetch(api_url, headers, data, proxy=proxy)
     return response
 
 
-async def generate_lyrics(prompt, token):
+async def generate_lyrics(prompt, token, proxy):
     headers = {"Authorization": f"Bearer {token}"}
     api_url = f"{BASE_URL}/api/generate/lyrics/"
     data = {"prompt": prompt}
-    return await fetch(api_url, headers, data)
+    return await fetch(api_url, headers, data, proxy=proxy)
 
 
-async def get_lyrics(lid, token):
+async def get_lyrics(lid, token, proxy):
     headers = {"Authorization": f"Bearer {token}"}
     api_url = f"{BASE_URL}/api/generate/lyrics/{lid}"
-    return await fetch(api_url, headers, method="GET")
+    return await fetch(api_url, headers, method="GET", proxy=proxy)
 
 
-async def get_credits(token):
+async def get_credits(token, proxy):
     headers = {"Authorization": f"Bearer {token}"}
     api_url = f"{BASE_URL}/api/billing/info/"
-    respose = await fetch(api_url, headers, method="GET")
+    respose = await fetch(api_url, headers, method="GET", proxy=proxy)
     return {
         "credits_left": respose['total_credits_left'],
         "period": respose['period'],

@@ -4,3 +4,5 @@ fastapi
 uvicorn
 pydantic
 requests
+sqlalchemy[asyncio]
+

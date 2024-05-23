@@ -15,3 +15,5 @@ gen
 
 __pycache__
 .env
+
+*.sqlite

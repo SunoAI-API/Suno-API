@@ -1,13 +1,20 @@
 # -*- coding:utf-8 -*-
 
-import os
-import time
 from http.cookies import SimpleCookie
-from threading import Thread
 
 import requests
 
+from db import AuthSession
 from utils import COMMON_HEADERS
+
+
+def cookie_from_auth_session(session: AuthSession):
+    cookie = SunoCookie()
+    cookie.set_proxy(session.proxy.address)
+    cookie.load_cookie(session.cookie)
+    cookie.set_session_id(session.session_id)
+
+    return cookie
 
 
 class SunoCookie:
@@ -15,6 +22,7 @@ class SunoCookie:
         self.cookie = SimpleCookie()
         self.session_id = None
         self.token = None
+        self.proxy = None
 
     def load_cookie(self, cookie_str):
         self.cookie.load(cookie_str)
@@ -34,44 +42,34 @@ class SunoCookie:
     def set_token(self, token: str):
         self.token = token
 
+    def get_proxy(self):
+        return self.proxy
 
-suno_auth = SunoCookie()
-suno_auth.set_session_id(os.getenv("SESSION_ID"))
-suno_auth.load_cookie(os.getenv("COOKIE"))
+    def set_proxy(self, proxy):
+        self.proxy = proxy
 
+    def update_token(self):
+        headers = {"cookie": self.get_cookie()}
+        headers.update(COMMON_HEADERS)
 
-def update_token(suno_cookie: SunoCookie):
-    headers = {"cookie": suno_cookie.get_cookie()}
-    headers.update(COMMON_HEADERS)
-    session_id = suno_cookie.get_session_id()
+        proxies = None
+        if self.get_proxy():
+            proxies = {
+                'http': self.get_proxy(),
+                'https': self.get_proxy()
+            }
 
-    resp = requests.post(
-        url=f"https://clerk.suno.com/v1/client/sessions/{session_id}/tokens?_clerk_js_version=4.72.0-snapshot.vc141245",
-        headers=headers,
-    )
+        resp = requests.post(
+            url=f"https://clerk.suno.com/v1/client/sessions/{self.get_session_id()}/tokens?_clerk_js_version=4.72.0-snapshot.vc141245",
+            headers=headers,
+            proxies=proxies
+        )
 
-    resp_headers = dict(resp.headers)
-    set_cookie = resp_headers.get("Set-Cookie")
-    suno_cookie.load_cookie(set_cookie)
-    token = resp.json().get("jwt")
-    suno_cookie.set_token(token)
-    # print(set_cookie)
-    # print(f"*** token -> {token} ***")
+        if resp.status_code != 200:
+            raise RuntimeError(resp.json()["errors"][0]["code"])
 
-
-def keep_alive(suno_cookie: SunoCookie):
-    while True:
-        try:
-            update_token(suno_cookie)
-        except Exception as e:
-            print(e)
-        finally:
-            time.sleep(5)
-
-
-def start_keep_alive(suno_cookie: SunoCookie):
-    t = Thread(target=keep_alive, args=(suno_cookie,))
-    t.start()
-
-
-start_keep_alive(suno_auth)
+        resp_headers = dict(resp.headers)
+        set_cookie = resp_headers.get("Set-Cookie")
+        self.load_cookie(set_cookie)
+        token = resp.json().get("jwt")
+        self.set_token(token)

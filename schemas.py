@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from datetime import datetime
-from typing import Any, List, Optional, Union
+from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
@@ -12,7 +11,11 @@ class Response(BaseModel):
     data: Optional[Any] = None
 
 
-class CustomModeGenerateParam(BaseModel):
+class Request(BaseModel):
+    session_id: int = Field(..., description="auth session id")
+
+
+class CustomModeGenerateParam(Request):
     """Generate with Custom Mode"""
 
     prompt: str = Field(..., description="lyrics")
@@ -31,7 +34,7 @@ class CustomModeGenerateParam(BaseModel):
     continue_clip_id: Optional[str] = None
 
 
-class DescriptionModeGenerateParam(BaseModel):
+class DescriptionModeGenerateParam(Request):
     """Generate with Song Description"""
 
     gpt_description_prompt: str
@@ -41,7 +44,7 @@ class DescriptionModeGenerateParam(BaseModel):
         description="model version, default: chirp-v3-0",
         examples=["chirp-v3-0"],
     )
-    
+
     prompt: str = Field(
         default="",
         description="Placeholder, keep it as an empty string, do not modify it",
