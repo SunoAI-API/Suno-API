@@ -115,7 +115,7 @@ async def fetch_feed(aid: str, session_id: int):
         )
 
 
-@app.get("/generate/lyrics")
+@app.post("/generate/lyrics")
 async def generate_lyrics_post(request: Request, session_id: int = None):
     req = await request.json()
     prompt = req.get("prompt")
