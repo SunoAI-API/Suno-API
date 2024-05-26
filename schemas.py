@@ -11,10 +11,6 @@ class Response(BaseModel):
     data: Optional[Any] = None
 
 
-class SessionRequest(BaseModel):
-    session_id: int = Field(..., description="auth session id")
-
-
 class CustomModeGenerateParam(BaseModel):
     """Generate with Custom Mode"""
 
