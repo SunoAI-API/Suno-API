@@ -38,12 +38,14 @@ def get_cookie(session_id: int = None):
         stmt = select(AuthSession).order_by(AuthSession.last_usage).where(AuthSession.is_disabled == 0).limit(1).with_for_update()
 
         if session_id:
-            stmt.where(AuthSession.id == session_id)
+            stmt = stmt.where(AuthSession.id == session_id)
 
         try:
             auth_session = session.scalars(stmt).one()
         except sqlalchemy.exc.NoResultFound:
             raise RuntimeError("No sessions available")
+
+        auth_session.last_usage = datetime.datetime.now()
 
         cookie = cookie_from_auth_session(auth_session)
 
@@ -58,8 +60,6 @@ def get_cookie(session_id: int = None):
                     return get_cookie()
 
                 raise RuntimeError("Session is invalid")
-
-        auth_session.last_usage = datetime.datetime.now()
 
         session.commit()
 
