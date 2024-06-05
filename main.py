@@ -35,10 +35,12 @@ Base.metadata.create_all(engine)
 
 def get_cookie(session_id: int = None):
     with (Session.begin() as session):
-        stmt = select(AuthSession).order_by(AuthSession.last_usage).where(AuthSession.is_disabled == 0).limit(1).with_for_update()
+        stmt = select(AuthSession).order_by(AuthSession.last_usage).limit(1).with_for_update()
 
         if session_id:
             stmt = stmt.where(AuthSession.id == session_id)
+        else:
+            stmt = stmt.where(AuthSession.is_disabled == 0)
 
         try:
             auth_session = session.scalars(stmt).one()
@@ -51,6 +53,7 @@ def get_cookie(session_id: int = None):
 
         try:
             cookie.update_token()
+            auth_session.cookie = cookie.get_cookie()
         except RuntimeError as e:
             if str(e) == "signed_out":
                 auth_session.is_disabled = 1
