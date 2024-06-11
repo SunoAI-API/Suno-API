@@ -1,7 +1,11 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
+### Good news
 
-# Unofficial API
+I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API.
+Website: [http://app.sunoaiapi.com](https://app.sunoaiapi.com)
+
+### Unofficial API
 
 This is an unofficial API based on Python and FastAPI. It currently supports generating songs, lyrics, etc.  
 It comes with a built-in token maintenance and keep-alive feature, so you don't have to worry about the token expiring.
