@@ -73,3 +73,10 @@ async def get_credits(token):
         "monthly_limit": respose['monthly_limit'],
         "monthly_usage": respose['monthly_usage']
     }
+
+async def complete_generation(clip_id, token):
+    headers = {"Authorization": f"Bearer {token}"}
+    api_url = f"{BASE_URL}/api/generate/concat/v2/"
+    data = {"clip_id": clip_id}
+    response = await fetch(api_url, headers, data)
+    return response 

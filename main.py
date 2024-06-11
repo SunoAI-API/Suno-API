@@ -9,7 +9,7 @@ from fastapi.security.api_key import APIKeyHeader
 
 import schemas
 from deps import get_token
-from utils import generate_lyrics, generate_music, get_feed, get_lyrics, get_credits
+from utils import complete_generation, generate_lyrics, generate_music, get_feed, get_lyrics, get_credits
 
 API_KEY = os.getenv("API_KEY")
 API_KEY_NAME = "X-API-Key"
@@ -85,6 +85,23 @@ async def generate_lyrics_post(request: Request, token: str = Depends(get_token)
 
     try:
         resp = await generate_lyrics(prompt, token)
+        return resp
+    except Exception as e:
+        raise HTTPException(
+            detail=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+    
+@app.post("/generate/complete")
+async def generate_complete(request: Request, token: str = Depends(get_token), api_key: str = Depends(get_api_key)):
+    req = await request.json()
+    clip_id = req.get("clip_id")
+    if clip_id is None:
+        raise HTTPException(
+            detail="clip_id is required", status_code=status.HTTP_400_BAD_REQUEST
+        )
+    
+    try:
+        resp = await complete_generation(clip_id, token)
         return resp
     except Exception as e:
         raise HTTPException(
