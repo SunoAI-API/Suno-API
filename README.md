@@ -2,7 +2,7 @@
 
 ### Good news
 
-I provide the API of suno, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API.
+I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API.
 Website: [http://app.sunoaiapi.com](https://app.sunoaiapi.com)
 
 ### Unofficial API
