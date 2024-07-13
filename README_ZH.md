@@ -1,6 +1,6 @@
 ### 好消息
 我提供 SUNO API， 不需要任何部署，不需要购买 SUNO 账户。更低的价格，更好的体验。  
-网址: [https://app.sunoaiapi.com](https://app.sunoaiapi.com)
+网址: [https://app.foxai.me](https://app.foxai.me)
 
 ### 非官方 Suno API
 
