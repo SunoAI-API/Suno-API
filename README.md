@@ -1,8 +1,7 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
-### Good news
-
-I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API.
+I provide the Suno API, no deployment is required, no subscription to suno is required. 
+Lower price, more convenient to use the suno API.
 Website: [https://app.foxai.me](https://app.foxai.me)
 
 ### Unofficial API
@@ -21,7 +20,6 @@ It comes with a built-in token maintenance and keep-alive feature, so you don't 
 
 [https://t.me/austin2035](https://t.me/austin2035)
 
-![group](./images/WechatIMG148.jpg)
 
 ### Usage
 
