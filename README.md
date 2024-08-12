@@ -1,9 +1,5 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
-I provide the Suno API, no deployment is required, no subscription to suno is required. 
-Lower price, more convenient to use the suno API.
-Website: [https://app.foxai.me](https://app.foxai.me)
-
 ### Unofficial API
 
 This is an unofficial API based on Python and FastAPI. It currently supports generating songs, lyrics, etc.  
