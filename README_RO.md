@@ -1,8 +1,4 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
-
-## Știri bune! 
-Ofer API-ul Suno, nu este necesară implementarea, nu este necesară nicio subscripție la Suno. Preț mai mic, mai convenabil de utilizat API-ul Suno. Website: http://app.sunoaiapi.com
-
 ### API Neoficial
 
 Acesta este un API Suno neoficial bazat pe Python și FastAPI. În prezent, suportă generarea de cântece, versuri, etc.
