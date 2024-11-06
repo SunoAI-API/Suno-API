@@ -23,6 +23,7 @@ class CustomModeGenerateParam(BaseModel):
     )
     title: str = Field(..., description="song title")
     tags: str = Field(..., description="style of music")
+    negative_tags: str = Field(..., description="negative style of music")
     continue_at: Optional[int] = Field(
         default=None,
         description="continue a new clip from a previous song, format number",
