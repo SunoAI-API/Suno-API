@@ -21,12 +21,15 @@ class CustomModeGenerateParam(BaseModel):
         description="model version, default: chirp-v3-0",
         examples=["chirp-v3-0"],
     )
-    title: str = Field(default='', description="song title")
-    tags: str = Field(default='', description="style of music")
-    continue_at: Optional[str] = Field(
+
+    title: str = Field(..., description="song title")
+    tags: str = Field(..., description="style of music")
+    negative_tags: str = Field(..., description="negative style of music")
+    continue_at: Optional[int] = Field(
+
         default=None,
-        description="continue a new clip from a previous song, format mm:ss",
-        examples=["01:23"],
+        description="continue a new clip from a previous song, format number",
+        examples=[120],
     )
     continue_clip_id: Optional[str] = None
 
