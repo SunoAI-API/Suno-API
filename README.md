@@ -53,6 +53,10 @@ After setting up the service, visit /docs
 
 ![docs](./images/docs.png)
 
+#### 合作交流
+备注进群：拉你进入 音乐生成行业交流群
+<img src="./images/wechat.jpg" width="382px" height="511px" />
+
 ### Useful resources
 
 [chatgpt web, midjourney, gpts,tts, whisper,suno-v3](https://github.com/Dooy/chatgpt-web-midjourney-proxy)
