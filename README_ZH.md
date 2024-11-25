@@ -52,4 +52,5 @@ docker compose build && docker compose up
 
 #### 合作交流
 
+备注进群：拉你进入 suno 行业交流群。
 <img src="./images/wechat.jpg" width="382px" height="511px" />
