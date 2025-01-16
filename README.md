@@ -17,11 +17,6 @@ It comes with a built-in token maintenance and keep-alive feature, so you don't 
 - Simple code, easy to maintain, convenient for secondary development
 
 
-### Contact me
-
-[https://t.me/austin2035](https://t.me/austin2035)
-
-
 ### Usage
 
 #### Configuration
