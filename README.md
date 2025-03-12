@@ -1,9 +1,5 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
-## Suno API
-Contact me, if you need suno api.  
-[https://t.me/austin3306](https://t.me/austin3306)
-
 
 ### Unofficial API
 
@@ -52,12 +48,3 @@ docker compose build && docker compose up
 After setting up the service, visit /docs
 
 ![docs](./images/docs.png)
-
-#### 合作交流
-备注进群：拉你进入 音乐生成行业交流群
-<img src="./images/wechat.jpg" width="382px" height="511px" />
-
-### Useful resources
-
-[chatgpt web, midjourney, gpts,tts, whisper,suno-v3](https://github.com/Dooy/chatgpt-web-midjourney-proxy)
-
