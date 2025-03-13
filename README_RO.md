@@ -10,12 +10,6 @@ Vine cu o funcționalitate integrată de menținere a tokenului și de menținer
 - Complet asincron, rapid, potrivit pentru o extindere ulterioară
 - Cod simplu, ușor de întreținut, convenabil pentru dezvoltarea secundară
 
-### Contactați-mă
-
-[https://t.me/austin2035](https://t.me/austin2035)
-
-![group](./images/WechatIMG148.jpg)
-
 ### Utilizare
 
 #### Configurare
