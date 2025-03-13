@@ -45,8 +45,3 @@ docker compose build && docker compose up
 
 ![docs](./images/docs.png)
 
-
-#### 合作交流
-
-备注进群：拉你进入 音乐生成行业交流群。
-<img src="./images/wechat.jpg" width="382px" height="511px" />
