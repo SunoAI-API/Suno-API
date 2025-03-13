@@ -46,8 +46,3 @@ docker compose build && docker compose up
 
 ![docs](./images/docs.png)
 
-
-#### 連絡する
-
-
-<img src="./images/wechat.jpg" width="382px" height="511px" />
