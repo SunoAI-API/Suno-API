@@ -1,5 +1,10 @@
 [简体中文](README_ZH.md) | [日本語](README_JA.md)
 
+### FoxAIHub
+
+FoxAIHub focuses on delivering efficient and reliable AI model API services, covering text-to-image, text-to-video, image-to-video, and music generation API, helping you stay ahead at the intersection of creativity and technology.
+[FoxAIHUb](https://foxaihub.com)
+
 
 ### Unofficial API
 
